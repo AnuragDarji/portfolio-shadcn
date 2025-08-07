@@ -17,7 +17,7 @@ const Layout = () => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <div className="dark bg-gradient-to-br from-gray-900 to-gray-950">
+    <div className=" bg-gradient-to-br from-gray-900 to-gray-950" style={{fontFamily: "Figtree"}}>
       <Header
         onLinkClick={handleScrollTo}
         refs={{ heroRef, aboutRef, skillRef, expRef, projRef, contactRef }}

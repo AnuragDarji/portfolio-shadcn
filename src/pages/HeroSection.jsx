@@ -5,10 +5,10 @@ import img from "../assets/grid2.svg";
 
 export function HeroSection() {
   return (
-    <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-950 overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 overflow-hidden">
       {/* Background pattern */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-10 dark:opacity-10"
         style={{
           backgroundImage: `url(${img})`,
           backgroundSize: "250px 250px",
@@ -21,23 +21,23 @@ export function HeroSection() {
       <div className="container relative z-10 px-6">
         <div className="mx-auto max-w-2xl text-center">
           {/* Animated greeting */}
-          <div className="mb-4 text-lg font-medium text-primary/80 animate-fade-in">
+          <div className="mb-4 text-lg font-medium text-primary/80 dark:text-primary/80 animate-fade-in">
             Hello, I'm
           </div>
 
           {/* Name */}
           <h1
-            className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl text-foreground"
+            className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl text-gray-900 dark:text-foreground"
             style={{ fontFamily: "Fira Code" }}
           >
-            <span className="bg-gradient-to-r from-primary to-foreground bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary to-gray-900 dark:to-foreground bg-clip-text text-transparent">
               Anurag Darji
             </span>
           </h1>
 
           {/* Title */}
-          <p className="mt-6 text-xl leading-8 text-muted-foreground">
-            <span className="font-semibold text-foreground">
+          <p className="mt-6 text-xl leading-8 text-gray-600 dark:text-muted-foreground">
+            <span className="font-semibold text-gray-900 dark:text-foreground">
               Frontend Developer
             </span>{" "}
             specializing in{" "}
@@ -62,7 +62,7 @@ export function HeroSection() {
               variant="outline"
               asChild
               size="lg"
-              className="text-foreground border-muted-foreground hover:bg-muted/20 hover:text-primary"
+              className="text-gray-900 dark:text-foreground border-gray-300 dark:border-muted-foreground hover:bg-gray-100 dark:hover:bg-muted/20 hover:text-primary"
             >
               <Link to="/contact">Contact Me</Link>
             </Button>
@@ -74,7 +74,7 @@ export function HeroSection() {
               variant="ghost"
               size="icon"
               asChild
-              className="text-muted-foreground hover:bg-muted/20 hover:text-primary"
+              className="text-gray-500 dark:text-muted-foreground hover:bg-gray-100 dark:hover:bg-muted/20 hover:text-primary"
             >
               <a
                 href="https://github.com/yourusername"
@@ -89,7 +89,7 @@ export function HeroSection() {
               variant="ghost"
               size="icon"
               asChild
-              className="text-muted-foreground hover:bg-muted/20 hover:text-primary"
+              className="text-gray-500 dark:text-muted-foreground hover:bg-gray-100 dark:hover:bg-muted/20 hover:text-primary"
             >
               <a
                 href="https://linkedin.com/in/yourusername"
@@ -104,7 +104,7 @@ export function HeroSection() {
               variant="ghost"
               size="icon"
               asChild
-              className="text-muted-foreground hover:bg-muted/20 hover:text-primary"
+              className="text-gray-500 dark:text-muted-foreground hover:bg-gray-100 dark:hover:bg-muted/20 hover:text-primary"
             >
               <a
                 href="https://twitter.com/yourusername"
@@ -116,11 +116,6 @@ export function HeroSection() {
               </a>
             </Button>
           </div>
-
-          {/* Scroll indicator */}
-          {/* <div className="mt-16 animate-bounce">
-            <div className="h-6 w-4 rounded-full border-2 border-muted-foreground"></div>
-          </div> */}
         </div>
       </div>
     </section>

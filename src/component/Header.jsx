@@ -48,7 +48,9 @@ export function Header({ onLinkClick, refs }) {
           >
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
           </svg>
-          <span className="font-bold text-white sm:inline-block">My Portfolio</span>
+          <span className="font-bold text-white sm:inline-block">
+            My Portfolio
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -69,7 +71,9 @@ export function Header({ onLinkClick, refs }) {
                         onClick={() => handleLinkClick(refs.expRef)}
                         className="block cursor-pointer select-none space-y-1 rounded-md p-3 leading-none transition-colors hover:bg-gray-800 hover:text-white focus:bg-gray-800 focus:text-white"
                       >
-                        <div className="text-sm font-medium text-white">Experience</div>
+                        <div className="text-sm font-medium text-white">
+                          Experience
+                        </div>
                         <p className="text-sm text-gray-400 leading-snug">
                           My professional journey and roles I've held.
                         </p>
@@ -80,7 +84,9 @@ export function Header({ onLinkClick, refs }) {
                         onClick={() => handleLinkClick(refs.skillRef)}
                         className="block cursor-pointer select-none space-y-1 rounded-md p-3 leading-none transition-colors hover:bg-gray-800 hover:text-white focus:bg-gray-800 focus:text-white"
                       >
-                        <div className="text-sm font-medium text-white">Skills</div>
+                        <div className="text-sm font-medium text-white">
+                          Skills
+                        </div>
                         <p className="text-sm text-gray-400 leading-snug">
                           Technologies and tools I'm proficient with.
                         </p>
@@ -115,7 +121,11 @@ export function Header({ onLinkClick, refs }) {
             className="text-gray-300 hover:bg-gray-800 hover:text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
             <span className="sr-only">Toggle menu</span>
           </Button>
         </div>
