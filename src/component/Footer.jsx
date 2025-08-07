@@ -57,7 +57,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="text-center text-sm text-gray-500 dark:text-gray-500">
-          © {currentYear} Your Name. All rights reserved.
+          © {currentYear} Anurag Darji. All rights reserved.
         </div>
       </div>
     </footer>

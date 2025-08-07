@@ -1,160 +1,80 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from "react";
 import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
+  SiHtml5,
+  SiCss3,
   SiJavascript,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiGraphql,
-  SiPython,
-  SiDocker,
+  SiTypescript,
+  SiReact,
+  SiFlutter,
+  SiMongodb,
   SiGit,
-  SiFigma,
-  SiFramer,
-} from 'react-icons/si';
-import { VscVscode } from "react-icons/vsc";
+  SiCplusplus,
+  SiTailwindcss,
+  SiBootstrap,
+  SiNodedotjs,
+  SiExpress,
+  SiPostman,
+  SiReact as SiReactNative,
+  SiExpo,
+} from "react-icons/si";
+import { FaReact } from "react-icons/fa";
+import { BiLogoVisualStudio } from "react-icons/bi";
+import { FaJava } from "react-icons/fa";
 
 export function SkillsSection() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-
-  // Enhanced scroll animations with different speeds
-  const xFrontend = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
-  const xBackend = useTransform(scrollYProgress, [0, 1], ['-30%', '30%']);
-  const xTools = useTransform(scrollYProgress, [0, 1], ['0%', '-70%']);
-
-  // Technology data with additional metadata
-  const frontendTech = [
-    { name: 'React', icon: SiReact, color: '#61DAFB', speed: 1.2 },
-    { name: 'Next.js', icon: SiNextdotjs, color: '#000000', speed: 1.1 },
-    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6', speed: 1.3 },
-    { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E', speed: 1.0 },
-    { name: 'Tailwind', icon: SiTailwindcss, color: '#38B2AC', speed: 1.1 },
-    { name: 'Framer', icon: SiFramer, color: '#0055FF', speed: 1.4 },
+  const skills = [
+    // Frontend
+    { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
+    { name: "CSS3", icon: SiCss3, color: "#1572B6" },
+    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+    { name: "React.js", icon: FaReact, color: "#61DAFB" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38B2AC" },
+    { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3" },
+    
+    // Backend
+    { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+    { name: "Express", icon: SiExpress, color: "#000000" },
+    { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+    
+    // Mobile
+    { name: "React Native", icon: SiReactNative, color: "#61DAFB" },
+    { name: "Expo", icon: SiExpo, color: "#000020" },
+    
+    // Languages
+    { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+    { name: "Java", icon: FaJava, color: "#007396" },
+    { name: "C", icon: SiCplusplus, color: "#A8B9CC" },
+    
+    // Tools
+    { name: "Git", icon: SiGit, color: "#F05032" },
+    { name: "Postman", icon: SiPostman, color: "#FF6C37" },
+    { name: "VS Code", icon: BiLogoVisualStudio, color: "#007ACC" },
   ];
-
-  const backendTech = [
-    { name: 'Node.js', icon: SiNodedotjs, color: '#339933', speed: 1.2 },
-    { name: 'GraphQL', icon: SiGraphql, color: '#E10098', speed: 1.3 },
-    { name: 'Python', icon: SiPython, color: '#3776AB', speed: 1.1 },
-  ];
-
-  const tools = [
-    { name: 'Docker', icon: SiDocker, color: '#2496ED', speed: 1.4 },
-    { name: 'Git', icon: SiGit, color: '#F05032', speed: 1.0 },
-    { name: 'VS Code', icon: VscVscode, color: '#007ACC', speed: 1.2 },
-    { name: 'Figma', icon: SiFigma, color: '#F24E1E', speed: 1.3 },
-  ];
-
-  // Function to duplicate items with unique keys
-  const duplicateItems = (items) => {
-    return [...items, ...items].map((item, index) => ({
-      ...item,
-      key: `${item.name}-${index}`,
-    }));
-  };
 
   return (
-    <section
-      ref={ref}
-      className="relative py-24 bg-white dark:bg-gray-950 overflow-hidden"
-    >
-      {/* Subtle grid pattern background */}
-      <div className="absolute inset-0 opacity-10 dark:opacity-5 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHBhdGggZD0iTTAgMEg2MFY2MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik02MCAwTDAgNjBNMCAwTDYwIDYwIiBzdHJva2U9InJnYmEoMCwwLDAsMC4xKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')] dark:bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHBhdGggZD0iTTAgMEg2MFY2MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik02MCAwTDAgNjBNMCAwTDYwIDYwIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')] bg-center"></div>
-      </div>
-
-      <div className="container px-4 mx-auto relative z-10">
-        <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">
-          My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">Tech Stack</span>
+    <section className="py-12 bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">
+          My Skills
         </h2>
 
-        {/* Frontend Technologies */}
-        <div className="mb-12 overflow-hidden">
-          <motion.div
-            style={{ x: xFrontend }}
-            className="flex gap-8 w-max"
-          >
-            {duplicateItems(frontendTech).map((tech) => (
-              <TechCard 
-                key={tech.key}
-                name={tech.name}
-                icon={tech.icon}
-                color={tech.color}
-                speed={tech.speed}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 max-w-6xl mx-auto">
+          {skills.map((skill, index) => (
+            <div
+              key={index}
+              className="flex flex-col  items-center justify-center p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 border-1 hover:shadow-md"
+            >
+              <skill.icon
+                className="h-8 w-8 mb-2"
+                style={{ color: skill.color }}
               />
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Backend Technologies */}
-        <div className="mb-12 overflow-hidden">
-          <motion.div
-            style={{ x: xBackend }}
-            className="flex gap-8 w-max"
-          >
-            {duplicateItems(backendTech).map((tech) => (
-              <TechCard 
-                key={tech.key}
-                name={tech.name}
-                icon={tech.icon}
-                color={tech.color}
-                speed={tech.speed}
-              />
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Tools */}
-        <div className="overflow-hidden">
-          <motion.div 
-            style={{ x: xTools }}
-            className="flex gap-8 w-max"
-          >
-            {duplicateItems(tools).map((tech) => (
-              <TechCard 
-                key={tech.key}
-                name={tech.name}
-                icon={tech.icon}
-                color={tech.color}
-                speed={tech.speed}
-              />
-            ))}
-          </motion.div>
+              <span className="text-sm font-medium text-center text-gray-700 dark:text-gray-300">
+                {skill.name}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function TechCard({ name, icon: Icon, color, speed }) {
-  return (
-    <motion.div
-      className="w-40 h-40 flex-shrink-0 bg-white/90 dark:bg-gray-800/80 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 dark:hover:border-blue-400/50 transition-all flex flex-col items-center justify-center gap-4 p-6 backdrop-blur-sm shadow-sm dark:shadow-none"
-      whileHover={{ 
-        boxShadow: `0 0 20px ${color}40`,
-      }}
-      transition={{ 
-        duration: 0.3,
-        type: 'spring',
-        bounce: 0.4
-      }}
-    >
-      <motion.div
-        className="p-4 rounded-full border-2 flex items-center justify-center"
-        style={{
-          backgroundColor: `${color}15`,
-          borderColor: color,
-        }}
-      >
-        <Icon className="h-8 w-8" style={{ color }} />
-      </motion.div>
-      <h3 className="font-medium text-center text-gray-800 dark:text-white text-lg">{name}</h3>
-    </motion.div>
   );
 }

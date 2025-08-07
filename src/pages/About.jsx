@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 
 export function About() {
   return (
-    <section id="about" className="py-24 bg-gray-50 dark:bg-gray-950">
-      <div className="container px-6 mx-auto">
+    <section id="about" className="py-24 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
+      <div className="container px-6 mx-auto max-w-7xl">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Left column - Image placeholder */}
           <div className="relative">
@@ -23,7 +23,7 @@ export function About() {
             </h2>
             
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              I'm a passionate frontend developer with {new Date().getFullYear() - 2020}+ years of experience 
+              I'm a passionate frontend developer with {new Date().getFullYear() - 2024}+ years of experience 
               building modern web applications using React.js and its ecosystem.
             </p>
             
