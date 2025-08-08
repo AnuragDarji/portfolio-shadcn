@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Outlet } from "react-router-dom";
 import { Header } from "./component/Header";
 import { Footer } from "./component/Footer";
+import ScrollToTopButton from "./component/ScrollToTopButton";
 
 const Layout = () => {
   const heroRef = useRef(null);
@@ -22,6 +23,7 @@ const Layout = () => {
       className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-950"
       style={{ fontFamily: "Figtree" }}
     >
+      <ScrollToTopButton/>
       <Header
         onLinkClick={handleScrollTo}
         refs={{ heroRef, aboutRef, skillRef, expRef, projRef, contactRef }}

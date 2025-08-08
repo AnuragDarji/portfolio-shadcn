@@ -1,105 +1,231 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Github, Link as LinkIcon } from "lucide-react";
 
-const ProjectsPage = () => {
-  const [activeTab, setActiveTab] = useState("all");
+// Sample project data - some without links
+const projectsData = [
+  {
+    id: 1,
+    title: "ApplyWize",
+    description:
+      "APPLYWIZE simplifies higher education admissions for students aspiring to study abroad.",
+    category: "Web",
+    image: "https://anuragdarji.github.io/Portfolio/assets/img/work-1.jpg",
+    tech: ["React", "Antd", "Sass", "TypeScript", "Django"],
+    githubLink: "",
+    liveLink: "https://applywize.com/",
+  },
+  {
+    id: 2,
+    title: "Mobile HR App",
+    description: "React Native app for employee attendance and HR management.",
+    category: "Mobile",
+    image: "https://source.unsplash.com/600x400/?mobile,app",
+    tech: ["React Native", "Expo", "SQLite"],
+    githubLink: null, // No GitHub link
+    liveLink: "#",
+  },
+  {
+    id: 3,
+    title: "Portfolio Website",
+    description: "Personal portfolio with animations and SEO optimization.",
+    category: "Web",
+    image: "https://source.unsplash.com/600x400/?portfolio,design",
+    tech: ["Next.js", "Framer Motion", "Tailwind"],
+    githubLink: "#",
+    liveLink: null, // No live link
+  },
+  {
+    id: 4,
+    title: "AI Chatbot",
+    description: "An intelligent chatbot for customer support.",
+    category: "AI",
+    image: "https://source.unsplash.com/600x400/?ai,robot",
+    tech: ["Python", "OpenAI API", "React"],
+    githubLink: null, // No GitHub link
+    liveLink: null, // No live link
+  },
+];
 
-  const projects = [
-    {
-      id: "1",
-      title: "E-commerce Platform",
-      description: "A full-featured online store with payment integration",
-      category: "web",
-      tags: ["React", "Node.js", "MongoDB"],
-    },
-    {
-      id: "2",
-      title: "Mobile Fitness App",
-      description: "Workout tracking and nutrition planning application",
-      category: "mobile",
-      tags: ["React Native", "Firebase"],
-    },
-    {
-      id: "3",
-      title: "Data Analytics Dashboard",
-      description: "Real-time data visualization for business metrics",
-      category: "data",
-      tags: ["Python", "D3.js", "SQL"],
-    },
-    {
-      id: "4",
-      title: "Portfolio Website",
-      description: "Responsive personal portfolio with project showcase",
-      category: "web",
-      tags: ["Next.js", "Tailwind CSS"],
-    },
-    {
-      id: "5",
-      title: "AI Chatbot",
-      description: "Customer support chatbot with natural language processing",
-      category: "ai",
-      tags: ["Python", "TensorFlow", "NLP"],
-    },
-  ];
+const categories = ["All", "Web", "Mobile", "AI"];
 
-  const categories = [
-    { id: "all", label: "All Projects" },
-    { id: "web", label: "Web Development" },
-    { id: "mobile", label: "Mobile Apps" },
-    { id: "data", label: "Data Science" },
-    { id: "ai", label: "AI/ML" },
-  ];
+export default function ProjectsPage() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredProjects = activeTab === "all" 
-    ? projects 
-    : projects.filter(project => project.category === activeTab);
+  const filteredProjects =
+    selectedCategory === "All"
+      ? projectsData
+      : projectsData.filter((project) => project.category === selectedCategory);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">My Projects</h1>
-      
-      <Tabs defaultValue="all" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 gap-2 mb-8">
-          {categories.map((category) => (
-            <TabsTrigger 
-              key={category.id}
-              value={category.id}
-              onClick={() => setActiveTab(category.id)}
-              className="py-2 px-4 rounded-md transition-colors"
+    <div className="container mx-auto py-12 px-4 max-w-7xl">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+          My Projects
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          A collection of my work across different technologies and platforms.
+        </p>
+      </div>
+
+      {/* Tabs for categories */}
+      <Tabs
+        defaultValue="All"
+        onValueChange={setSelectedCategory}
+        className="w-full flex flex-col items-center mb-16"
+      >
+        <TabsList className="mb-8 flex flex-wrap justify-center bg-secondary/20 p-1 rounded-full">
+          {categories.map((cat) => (
+            <TabsTrigger
+              key={cat}
+              value={cat}
+              className="px-6 py-2 rounded-full data-[state=active]:bg-primary data-[state=active]:text-white transition-all"
             >
-              {category.label}
+              {cat}
             </TabsTrigger>
           ))}
         </TabsList>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <TabsContent key={project.id} value={activeTab}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span 
-                        key={tag} 
-                        className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-sm"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+        {/* Project Cards */}
+        <TabsContent value={selectedCategory} className="w-full">
+          {filteredProjects.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-xl text-muted-foreground">
+                No projects found in this category.
+              </p>
+            </div>
+          ) : (
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredProjects.map((project) => (
+                <Card
+                  key={project.id}
+                  className="hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden border border-border/50 hover:border-primary/10 group p-0 dark:bg-gray-800/50"
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-58 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          className="rounded-full"
+                          disabled={!project.githubLink}
+                          asChild={!!project.githubLink}
+                        >
+                          {project.githubLink ? (
+                            <a
+                              href={project.githubLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Github className="w-4 h-4 mr-2" /> Code
+                            </a>
+                          ) : (
+                            <>
+                              <Github className="w-4 h-4 mr-2" /> Code
+                            </>
+                          )}
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="rounded-full"
+                          disabled={!project.liveLink}
+                          asChild={!!project.liveLink}
+                        >
+                          {project.liveLink ? (
+                            <a
+                              href={project.liveLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <LinkIcon className="w-4 h-4 mr-2" /> Live
+                            </a>
+                          ) : (
+                            <>
+                              <LinkIcon className="w-4 h-4 mr-2" /> Live
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          ))}
-        </div>
+                  <div className="p-6">
+                    <CardHeader className="p-0 mb-4">
+                      <CardTitle className="text-xl">{project.title}</CardTitle>
+                      <CardDescription className="text-muted-foreground">
+                        {project.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tech.map((t, index) => (
+                          <Badge
+                            key={index}
+                            variant="outline"
+                            className="font-mono text-xs px-2 py-1"
+                          >
+                            {t}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          )}
+        </TabsContent>
       </Tabs>
+
+      {/* Social Links */}
+      <div className="flex flex-col items-center gap-4 mt-8 pt-8 border-t border-border/50">
+        <h3 className="text-lg font-medium text-muted-foreground">
+          Find more on
+        </h3>
+        <div className="flex gap-4">
+          <Button
+            variant="outline"
+            size="lg"
+            className="rounded-full px-6"
+            asChild
+          >
+            <a
+              href="https://github.com/AnuragDarji"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="w-5 h-5 mr-2" /> GitHub
+            </a>
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            className="rounded-full px-6"
+            asChild
+          >
+            <a
+              href="https://linktr.ee/anuragdarji"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkIcon className="w-5 h-5 mr-2" /> Linktree
+            </a>
+          </Button>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default ProjectsPage;
+}

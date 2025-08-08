@@ -11,11 +11,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { Link } from "react-router-dom";
+import icon from "../assets/fav.png";
 
 export function Header({ onLinkClick, refs }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false); // Default to dark mode
-  
 
   const handleLinkClick = (ref) => {
     onLinkClick(ref);
@@ -26,9 +26,9 @@ export function Header({ onLinkClick, refs }) {
     setDarkMode(!darkMode);
     // Apply the theme class to the root element
     if (!darkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   };
 
@@ -48,18 +48,7 @@ export function Header({ onLinkClick, refs }) {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6 text-primary-500"
-          >
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>
+          <img src={icon} alt="Logo" className="h-8 w-8 object-contain border-1 rounded-full" />
           <span className="font-bold text-gray-900 dark:text-white sm:inline-block">
             My Portfolio
           </span>
@@ -69,7 +58,8 @@ export function Header({ onLinkClick, refs }) {
         <nav className="hidden md:flex mx-auto">
           <NavigationMenu>
             <NavigationMenuList>
-              {navItem("Home", refs.heroRef)}
+              {/* {navItem("Home", refs.heroRef)} */}
+              {navItem("About", refs.aboutRef)}
               {navItem("Projects", refs.projRef)}
 
               <NavigationMenuItem>
@@ -107,8 +97,6 @@ export function Header({ onLinkClick, refs }) {
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
-              {navItem("About", refs.aboutRef)}
             </NavigationMenuList>
           </NavigationMenu>
         </nav>

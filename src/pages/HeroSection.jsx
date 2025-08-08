@@ -3,7 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import img from "../assets/grid2.svg";
 
-export function HeroSection() {
+export function HeroSection({ contactRef, projRef }) {
+  const scrollToContact = () => {
+    contactRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const scrollToProj = () => {
+    projRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 overflow-hidden">
       {/* Background pattern */}
@@ -54,7 +60,13 @@ export function HeroSection() {
               size="lg"
               className="gap-2 bg-primary hover:bg-primary/90"
             >
-              <Link to="/projects">
+              <Link
+                to="#"
+                onClick={(e) => {
+                  e.preventDefault(); // prevent navigation
+                  scrollToProj();
+                }}
+              >
                 View My Work <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -64,7 +76,15 @@ export function HeroSection() {
               size="lg"
               className="text-gray-900 dark:text-foreground border-gray-300 dark:border-muted-foreground hover:bg-gray-100 dark:hover:bg-muted/20 hover:text-primary"
             >
-              <Link to="/contact">Contact Me</Link>
+              <Link
+                to="#"
+                onClick={(e) => {
+                  e.preventDefault(); // prevent navigation
+                  scrollToContact();
+                }}
+              >
+                Contact Me
+              </Link>
             </Button>
           </div>
 
@@ -77,7 +97,7 @@ export function HeroSection() {
               className="text-gray-500 dark:text-muted-foreground hover:bg-gray-100 dark:hover:bg-muted/20 hover:text-primary"
             >
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/AnuragDarji"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -92,7 +112,7 @@ export function HeroSection() {
               className="text-gray-500 dark:text-muted-foreground hover:bg-gray-100 dark:hover:bg-muted/20 hover:text-primary"
             >
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://linkedin.com/in/anurag-darji"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -107,7 +127,7 @@ export function HeroSection() {
               className="text-gray-500 dark:text-muted-foreground hover:bg-gray-100 dark:hover:bg-muted/20 hover:text-primary"
             >
               <a
-                href="https://twitter.com/yourusername"
+                href="https://x.com/apdarji29"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div>
       <section ref={heroRef}>
-        <HeroSection />
+        <HeroSection contactRef={contactRef} projRef={projRef} />
       </section>
       <section ref={aboutRef}>
         <About />
