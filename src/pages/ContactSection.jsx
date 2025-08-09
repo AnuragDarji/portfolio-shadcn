@@ -50,7 +50,7 @@ export function ContactSection() {
           message: formData.message
         };
 
-        const response = await fetch('https://to-do-list-repository-1.onrender.com/contact_info/', {
+        const response = await fetch('https://portfolio-contact-1.onrender.com/contact_info', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

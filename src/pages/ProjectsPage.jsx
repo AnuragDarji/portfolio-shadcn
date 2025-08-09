@@ -10,6 +10,15 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, Link as LinkIcon } from "lucide-react";
+import Img1 from "../assets/Project/work-1.jpg";
+import Img2 from "../assets/Project/work-2.jpg";
+import Img3 from "../assets/Project/work-3.jpg";
+import Img4 from "../assets/Project/work-4.jpg";
+import Img5 from "../assets/Project/work-5.jpg";
+import Img6 from "../assets/Project/work-6.jpg";
+import Img7 from "../assets/Project/work-7.jpg";
+import Img8 from "../assets/Project/work-8.jpg";
+import Img9 from "../assets/Project/work-9.jpg";
 
 // Sample project data - some without links
 const projectsData = [
@@ -19,44 +28,97 @@ const projectsData = [
     description:
       "APPLYWIZE simplifies higher education admissions for students aspiring to study abroad.",
     category: "Web",
-    image: "https://anuragdarji.github.io/Portfolio/assets/img/work-1.jpg",
+    image: Img1,
     tech: ["React", "Antd", "Sass", "TypeScript", "Django"],
     githubLink: "",
     liveLink: "https://applywize.com/",
+  },
+  {
+    id: 7,
+    title: "SkyEduco",
+    description:
+      "Responsive education portal guiding students abroad with personalized university matching, streamlined applications, and real-time tracking of progress.",
+    category: "Web",
+    image: Img9,
+    tech: ["React", "Antd", "Sass", "TypeScript", "Django"],
+    githubLink: "",
+    liveLink: "https://skyeduco.com/",
+  },
+  {
+    id: 8,
+    title: "Xamera",
+    description:
+      "Responsive education portal guiding students abroad with personalized university matching, streamlined applications, and real-time tracking of progress.",
+    category: "Web",
+    image: Img7,
+    tech: ["React", "Antd", "Sass", "TypeScript", "Django"],
+    githubLink: "",
+    liveLink: "https://xamera.org/",
+  },
+  {
+    id: 9,
+    title: "My Store",
+    description:
+      "Responsive education portal guiding students abroad with personalized university matching, streamlined applications, and real-time tracking of progress.",
+    category: "Web",
+    image: Img8,
+    tech: ["React", "Sass", "Redux"],
+    githubLink: "https://github.com/AnuragDarji/MyStore",
+    liveLink: "https://my-store-nine-ecru.vercel.app/",
   },
   {
     id: 2,
     title: "Mobile HR App",
     description: "React Native app for employee attendance and HR management.",
     category: "Mobile",
-    image: "https://source.unsplash.com/600x400/?mobile,app",
-    tech: ["React Native", "Expo", "SQLite"],
+    image: Img6,
+    tech: ["React Native", "Expo", "Django"],
     githubLink: null, // No GitHub link
-    liveLink: "#",
+    liveLink: null,
   },
   {
     id: 3,
     title: "Portfolio Website",
-    description: "Personal portfolio with animations and SEO optimization.",
+    description: "Personal portfolio with animations,smooth scrolling and responsive.",
     category: "Web",
-    image: "https://source.unsplash.com/600x400/?portfolio,design",
-    tech: ["Next.js", "Framer Motion", "Tailwind"],
-    githubLink: "#",
-    liveLink: null, // No live link
+    image: Img5,
+    tech: ["HTML", "CSS", "JavaScript"],
+    githubLink: "https://github.com/AnuragDarji/Portfolio",
+    liveLink: "https://anuragdarji.github.io/Portfolio/", // No live link
   },
   {
     id: 4,
-    title: "AI Chatbot",
+    title: "Hamprigo Industries",
     description: "An intelligent chatbot for customer support.",
-    category: "AI",
-    image: "https://source.unsplash.com/600x400/?ai,robot",
-    tech: ["Python", "OpenAI API", "React"],
+    category: "Web",
+    image: Img2,
+    tech: ["React JS", "Antd"],
     githubLink: null, // No GitHub link
-    liveLink: null, // No live link
+    liveLink: "https://hamprigoindustries.com/", // No live link
+  },
+  {
+    id: 5,
+    title: "Weather App",
+    description: "An intelligent chatbot for customer support.",
+    category: "Web",
+    image: Img3,
+    tech: ["React JS"],
+    githubLink: "https://github.com/AnuragDarji/weather-app", // No GitHub link
+    liveLink: "https://anuragdarji.github.io/weather-app/", // No live link
+  },
+  {
+    id: 6,
+    title: "Quiz App",
+    description: "A quiz app where users select answers from multiple-choice options and view their final score at the end.",
+    category: "Web",
+    image: Img4,
+    tech: ["HTML", "CSS", "JavaScript"],
+    githubLink: "https://github.com/AnuragDarji/Quiz-App", // No GitHub link
+    liveLink: "https://anuragdarji.github.io/Quiz-App/", // No live link
   },
 ];
 
-const categories = ["All", "Web", "Mobile", "AI"];
+const categories = ["All", "Web", "Mobile"];
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -69,9 +131,12 @@ export default function ProjectsPage() {
   return (
     <div className="container mx-auto py-12 px-4 max-w-7xl">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-          My Projects
-        </h1>
+        <h2 className="text-4xl font-bold text-center mb-4 text-gray-900 dark:text-white">
+            My{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-500">
+              Projects
+            </span>
+          </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           A collection of my work across different technologies and platforms.
         </p>
