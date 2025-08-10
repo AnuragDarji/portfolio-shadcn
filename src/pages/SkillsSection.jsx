@@ -21,6 +21,7 @@ import { BiLogoVisualStudio } from "react-icons/bi";
 
 export function SkillsSection() {
   const [hoveredSkill, setHoveredSkill] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   
   const skills = [
     { name: "HTML5", icon: SiHtml5, color: "text-orange-500" },
@@ -30,7 +31,7 @@ export function SkillsSection() {
     { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-cyan-400" },
     { name: "Bootstrap", icon: SiBootstrap, color: "text-purple-500" },
     { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
-    { name: "Express", icon: SiExpress, color: "text-white-500" },
+    { name: "Express", icon: SiExpress, color: "text-gray-400" },
     { name: "MongoDB", icon: SiMongodb, color: "text-green-600" },
     { name: "React Native", icon: SiReactNative, color: "text-blue-300" },
     { name: "Expo", icon: SiExpo, color: "text-gray-700 dark:text-gray-300" },
@@ -53,6 +54,18 @@ export function SkillsSection() {
   const duplicatedSkills = [...skills, ...skills, ...skills];
 
   useEffect(() => {
+    // Check if mobile on mount and on resize
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
       
@@ -70,18 +83,28 @@ export function SkillsSection() {
         animationFrameRef.current = requestAnimationFrame(() => {
           if (marquee1Ref.current && marquee2Ref.current) {
             // Smooth transition by adding CSS transition
-            marquee1Ref.current.style.transition = 'all 0.5s ease-in-out';
-            marquee2Ref.current.style.transition = 'all 0.5s ease-in-out';
+            marquee1Ref.current.style.transition = 'transform 0.5s ease-in-out';
+            marquee2Ref.current.style.transition = 'transform 0.5s ease-in-out';
             
             if (isScrollingDown.current) {
+              marquee1Ref.current.style.animationPlayState = 'running';
+              marquee2Ref.current.style.animationPlayState = 'running';
               marquee1Ref.current.style.animationDirection = "normal";
               marquee2Ref.current.style.animationDirection = "reverse";
             } else {
+              marquee1Ref.current.style.animationPlayState = 'running';
+              marquee2Ref.current.style.animationPlayState = 'running';
               marquee1Ref.current.style.animationDirection = "reverse";
               marquee2Ref.current.style.animationDirection = "normal";
             }
           }
         });
+      } else {
+        // Pause animation when not in view
+        if (marquee1Ref.current && marquee2Ref.current) {
+          marquee1Ref.current.style.animationPlayState = 'paused';
+          marquee2Ref.current.style.animationPlayState = 'paused';
+        }
       }
     };
 
@@ -93,38 +116,43 @@ export function SkillsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 relative overflow-hidden">
+    <section ref={sectionRef} className="py-12 md:py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-3 md:mb-4">
             My <span className="text-indigo-600 dark:text-indigo-400">Tech Stack</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Technologies I work with daily
           </p>
         </div>
 
         {/* First Marquee Row */}
-        <div className="relative w-full overflow-hidden mb-6">
+        <div className="relative w-full overflow-hidden mb-4 md:mb-6">
           <div 
             ref={marquee1Ref}
-            className="flex animate-marquee whitespace-nowrap"
+            className="flex animate-marquee whitespace-nowrap will-change-transform"
             style={{ width: "fit-content" }}
           >
             {duplicatedSkills.map((skill, index) => (
               <div
                 key={`first-${index}`}
-                className="inline-flex items-center justify-center w-24 h-24 mx-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 flex-shrink-0 transition-all hover:shadow-md"
+                className="inline-flex flex-col items-center justify-center w-16 h-16 md:w-24 md:h-24 mx-1 md:mx-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 flex-shrink-0 transition-all hover:shadow-md "
                 onMouseEnter={() => setHoveredSkill(`first-${index}`)}
                 onMouseLeave={() => setHoveredSkill(null)}
               >
                 <skill.icon 
-                  className={`h-12 w-12 transition-colors duration-300 ${
+                  className={`h-6 w-6 md:h-10 md:w-10 transition-colors duration-300 ${
                     hoveredSkill === `first-${index}` 
                       ? `${skill.color}` 
                       : 'text-gray-400 dark:text-gray-500'
                   }`}
                 />
+                {/* {isMobile && (
+                  <span className="text-xs mt-1 text-gray-500 dark:text-gray-400 truncate w-full px-1">
+                    {skill.name}
+                  </span>
+                )} */}
               </div>
             ))}
           </div>
@@ -134,23 +162,28 @@ export function SkillsSection() {
         <div className="relative w-full overflow-hidden">
           <div 
             ref={marquee2Ref}
-            className="flex animate-marquee whitespace-nowrap"
+            className="flex animate-marquee whitespace-nowrap will-change-transform"
             style={{ width: "fit-content" }}
           >
             {[...duplicatedSkills].reverse().map((skill, index) => (
               <div
                 key={`second-${index}`}
-                className="inline-flex items-center justify-center w-24 h-24 mx-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 flex-shrink-0 transition-all hover:shadow-md"
+                className="inline-flex flex-col items-center justify-center w-16 h-16 md:w-24 md:h-24 mx-1 md:mx-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 flex-shrink-0 transition-all hover:shadow-md"
                 onMouseEnter={() => setHoveredSkill(`second-${index}`)}
                 onMouseLeave={() => setHoveredSkill(null)}
               >
                 <skill.icon 
-                  className={`h-12 w-12 transition-colors duration-300 ${
+                  className={`h-6 w-6 md:h-10 md:w-10 transition-colors duration-300 ${
                     hoveredSkill === `second-${index}` 
                       ? `${skill.color}` 
                       : 'text-gray-400 dark:text-gray-500'
                   }`}
                 />
+                {/* {isMobile && (
+                  <span className="text-xs mt-1 text-gray-500 dark:text-gray-400 truncate w-full px-1">
+                    {skill.name}
+                  </span>
+                )} */}
               </div>
             ))}
           </div>
@@ -163,12 +196,16 @@ export function SkillsSection() {
           100% { transform: translateX(-50%); }
         }
         .animate-marquee {
-          animation: marquee 80s linear infinite;
+          animation: marquee 60s linear infinite;
           display: flex;
+          will-change: transform;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
         }
         @media (max-width: 768px) {
           .animate-marquee {
-            animation-duration: 40s;
+            animation-duration: 30s;
           }
         }
       `}</style>

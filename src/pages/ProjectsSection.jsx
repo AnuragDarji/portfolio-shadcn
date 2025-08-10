@@ -10,8 +10,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, ArrowRight, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import blog from "../assets/Project/blog.png";
-import hr from "../assets/Project/hr.png";
+import blog from "../assets/Project/work-10.jpg";
+import hr from "../assets/Project/work-6.jpg";
 import { useNavigate } from "react-router-dom";
 
 export function ProjectsSection() {
@@ -38,12 +38,11 @@ export function ProjectsSection() {
     {
       title: "HR App",
       description:
-        "Web application that generates images using OpenAI's DALL-E model with user prompts.",
+        "React Native app for employee attendance and HR management.",
       tags: ["React Native", "Expo", "Django"],
       githubUrl: "https://github.com/AnuragDarji/HR-App",
       liveUrl: "",
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80",
+      image: hr,
     },
   ];
 

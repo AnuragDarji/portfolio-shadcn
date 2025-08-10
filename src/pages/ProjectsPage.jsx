@@ -48,10 +48,10 @@ const projectsData = [
     id: 8,
     title: "Xamera",
     description:
-      "Responsive education portal guiding students abroad with personalized university matching, streamlined applications, and real-time tracking of progress.",
+      "XAMERA provides science-backed psychometric career counseling coupled with expert test preparation to support learners.",
     category: "Web",
     image: Img7,
-    tech: ["React", "Antd", "Sass", "TypeScript", "Django"],
+    tech: ["React", "Antd", "Sass", "Django"],
     githubLink: "",
     liveLink: "https://xamera.org/",
   },
@@ -59,7 +59,7 @@ const projectsData = [
     id: 9,
     title: "My Store",
     description:
-      "Responsive education portal guiding students abroad with personalized university matching, streamlined applications, and real-time tracking of progress.",
+      "My Store is a React-based e-commerce web application featuring a collection of sample products.",
     category: "Web",
     image: Img8,
     tech: ["React", "Sass", "Redux"],
@@ -89,7 +89,7 @@ const projectsData = [
   {
     id: 4,
     title: "Hamprigo Industries",
-    description: "An intelligent chatbot for customer support.",
+    description: "The company specializes in fabric and textile manufacturing, particularly canvas, sheets, and sheeting materials.",
     category: "Web",
     image: Img2,
     tech: ["React JS", "Antd"],
@@ -99,7 +99,7 @@ const projectsData = [
   {
     id: 5,
     title: "Weather App",
-    description: "An intelligent chatbot for customer support.",
+    description: "A React JS weather app where you can search for any city to get real-time weather updates.",
     category: "Web",
     image: Img3,
     tech: ["React JS"],
@@ -153,7 +153,7 @@ export default function ProjectsPage() {
             <TabsTrigger
               key={cat}
               value={cat}
-              className="px-6 py-2 rounded-full data-[state=active]:bg-primary data-[state=active]:text-white transition-all"
+              className="px-4 sm:px-6 py-2 rounded-full data-[state=active]:bg-primary data-[state=active]:text-white transition-all text-sm sm:text-base"
             >
               {cat}
             </TabsTrigger>
@@ -173,59 +173,14 @@ export default function ProjectsPage() {
               {filteredProjects.map((project) => (
                 <Card
                   key={project.id}
-                  className="hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden border border-border/50 hover:border-primary/10 group p-0 dark:bg-gray-800/50"
+                  className="hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden border border-border/50 hover:border-primary/10 group p-0 dark:bg-gray-800/50 flex flex-col h-full"
                 >
-                  <div className="relative overflow-hidden">
+                  <div className="relative overflow-hidden flex-grow">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-58 object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          className="rounded-full"
-                          disabled={!project.githubLink}
-                          asChild={!!project.githubLink}
-                        >
-                          {project.githubLink ? (
-                            <a
-                              href={project.githubLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Github className="w-4 h-4 mr-2" /> Code
-                            </a>
-                          ) : (
-                            <>
-                              <Github className="w-4 h-4 mr-2" /> Code
-                            </>
-                          )}
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="rounded-full"
-                          disabled={!project.liveLink}
-                          asChild={!!project.liveLink}
-                        >
-                          {project.liveLink ? (
-                            <a
-                              href={project.liveLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <LinkIcon className="w-4 h-4 mr-2" /> Live
-                            </a>
-                          ) : (
-                            <>
-                              <LinkIcon className="w-4 h-4 mr-2" /> Live
-                            </>
-                          )}
-                        </Button>
-                      </div>
-                    </div>
                   </div>
                   <div className="p-6">
                     <CardHeader className="p-0 mb-4">
@@ -246,6 +201,51 @@ export default function ProjectsPage() {
                           </Badge>
                         ))}
                       </div>
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          className="rounded-full"
+                          disabled={!project.githubLink}
+                          asChild={!!project.githubLink}
+                        >
+                          {project.githubLink ? (
+                            <a
+                              href={project.githubLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center"
+                            >
+                              <Github className="w-4 h-4 mr-2" /> Code
+                            </a>
+                          ) : (
+                            <span className="flex items-center">
+                              <Github className="w-4 h-4 mr-2" /> Code
+                            </span>
+                          )}
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="rounded-full"
+                          disabled={!project.liveLink}
+                          asChild={!!project.liveLink}
+                        >
+                          {project.liveLink ? (
+                            <a
+                              href={project.liveLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center"
+                            >
+                              <LinkIcon className="w-4 h-4 mr-2" /> Live
+                            </a>
+                          ) : (
+                            <span className="flex items-center">
+                              <LinkIcon className="w-4 h-4 mr-2" /> Live
+                            </span>
+                          )}
+                        </Button>
+                      </div>
                     </CardContent>
                   </div>
                 </Card>
@@ -260,7 +260,7 @@ export default function ProjectsPage() {
         <h3 className="text-lg font-medium text-muted-foreground">
           Find more on
         </h3>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap justify-center">
           <Button
             variant="outline"
             size="lg"
