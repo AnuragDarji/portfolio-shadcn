@@ -112,7 +112,7 @@ export function HeroSection({ contactRef, projRef }) {
               className="text-gray-500 dark:text-muted-foreground hover:bg-gray-100 dark:hover:bg-muted/20 hover:text-primary"
             >
               <a
-                href="https://linkedin.com/in/anurag-darji"
+                href="https://www.linkedin.com/in/anurag-darji-a02052247/"
                 target="_blank"
                 rel="noopener noreferrer"
               >

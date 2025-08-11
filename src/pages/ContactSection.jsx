@@ -100,7 +100,7 @@ export function ContactSection() {
     },
     {
       icon: <Linkedin className="h-5 w-5" />,
-      href: "https://linkedin.com/in/anurag-darji",
+      href: "https://www.linkedin.com/in/anurag-darji-a02052247/",
       label: "LinkedIn"
     },
     {
