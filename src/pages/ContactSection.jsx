@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -38,43 +39,49 @@ export function ContactSection() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      setIsSubmitting(true);
-      
-      try {
-        const data = {
-          username: formData.name,
-          email: formData.email,
-          message: formData.message
-        };
 
-        const response = await fetch('https://portfolio-contact-1.onrender.com/contact_info', {
-          method: 'POST',
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (validateForm()) {
+    setIsSubmitting(true);
+
+    try {
+      const data = {
+        name: formData.name, // keep matching backend
+        email: formData.email,
+        message: formData.message
+      };
+
+      const response = await axios.post(
+        'https://contact-form-indol.vercel.app/api/contact',
+        data,
+        {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data),
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to submit form');
         }
+      );
 
-        const result = await response.json();
-        console.log('API Response:', result);
-        
-        setIsSubmitted(true);
-        setFormData({ name: '', email: '', message: '' });
-      } catch (error) {
-        console.error('Error submitting form:', error);
-        setErrors(prev => ({ ...prev, form: 'Failed to send message. Please try again later.' }));
-      } finally {
-        setIsSubmitting(false);
-      }
+      console.log('API Response:', response.data);
+
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setErrors(prev => ({
+        ...prev,
+        form: 'Failed to send message. Please try again later.'
+      }));
+    } finally {
+      setIsSubmitting(false);
     }
-  };
+  }
+};
+
+
 
   const contactMethods = [
     {
