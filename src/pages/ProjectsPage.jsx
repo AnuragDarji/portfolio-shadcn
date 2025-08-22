@@ -19,6 +19,7 @@ import Img6 from "../assets/Project/work-6.jpg";
 import Img7 from "../assets/Project/work-7.jpg";
 import Img8 from "../assets/Project/work-8.jpg";
 import Img9 from "../assets/Project/work-9.jpg";
+import Img10 from "../assets/Project/shortly.png";
 
 // Sample project data - some without links
 const projectsData = [
@@ -54,6 +55,17 @@ const projectsData = [
     tech: ["React", "Antd", "Sass", "Django"],
     githubLink: "",
     liveLink: "https://xamera.org/",
+  },
+  {
+    id: 11,
+    title: "Short.ly",
+    description:
+      "Short.ly helps you transform long, messy URLs into clean, trackable, and shareable short links in seconds.",
+    category: "Web",
+    image: Img10,
+    tech: ["React", "Shadcn", "tailwind", "Node js", "Express", "MongoDB"],
+    githubLink: "https://github.com/AnuragDarji/short-url-frontend",
+    liveLink: "https://shorturl-fawn.vercel.app/",
   },
   {
     id: 9,
