@@ -1,7 +1,10 @@
 import { Cpu, Layout, Smartphone, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import img from "../assets/profile.jpg";
 import { IoMdDownload } from "react-icons/io";
+
+// Import both images
+import lightImg from "../assets/light.jpg";
+import darkImg from "../assets/dark.jpg";
 
 export function About() {
   return (
@@ -14,11 +17,17 @@ export function About() {
           {/* Left column - Image */}
           <div className="relative">
             <div className="w-full h-96 bg-gradient-to-br from-primary/20 to-gray-100 dark:to-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
-              {/* Profile image */}
+              {/* Light image (default) */}
               <img
-                src={img}
-                alt="Profile"
-                className="w-full h-full object-cover object-center"
+                src={lightImg}
+                alt="Profile light"
+                className="w-full h-full object-cover object-center dark:hidden"
+              />
+              {/* Dark image (visible in dark mode) */}
+              <img
+                src={darkImg}
+                alt="Profile dark"
+                className="w-full h-full object-cover object-center hidden dark:block"
               />
             </div>
           </div>
