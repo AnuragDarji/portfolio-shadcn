@@ -11,7 +11,7 @@ export function HeroSection({ contactRef, projRef }) {
     projRef.current?.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 overflow-hidden">
+    <section className="relative h-[calc(100vh-64px)] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 overflow-hidden">
       {/* Background pattern */}
       <div
         className="absolute inset-0 opacity-10 dark:opacity-10"
