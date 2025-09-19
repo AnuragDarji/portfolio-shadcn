@@ -21,7 +21,7 @@ const Layout = () => {
   return (
     <div
       className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-950"
-      style={{ fontFamily: "Figtree" }}
+      style={{ fontFamily: "Playpen Sans" }}
     >
       <ScrollToTopButton/>
       <Header

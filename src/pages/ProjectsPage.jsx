@@ -91,7 +91,8 @@ const projectsData = [
   {
     id: 3,
     title: "Portfolio Website",
-    description: "Personal portfolio with animations,smooth scrolling and responsive.",
+    description:
+      "Personal portfolio with animations,smooth scrolling and responsive.",
     category: "Web",
     image: Img5,
     tech: ["HTML", "CSS", "JavaScript"],
@@ -101,7 +102,8 @@ const projectsData = [
   {
     id: 4,
     title: "Hamprigo Industries",
-    description: "The company specializes in fabric and textile manufacturing, particularly canvas, sheets, and sheeting materials.",
+    description:
+      "The company specializes in fabric and textile manufacturing, particularly canvas, sheets, and sheeting materials.",
     category: "Web",
     image: Img2,
     tech: ["React JS", "Antd"],
@@ -111,7 +113,8 @@ const projectsData = [
   {
     id: 5,
     title: "Weather App",
-    description: "A React JS weather app where you can search for any city to get real-time weather updates.",
+    description:
+      "A React JS weather app where you can search for any city to get real-time weather updates.",
     category: "Web",
     image: Img3,
     tech: ["React JS"],
@@ -121,7 +124,8 @@ const projectsData = [
   {
     id: 6,
     title: "Quiz App",
-    description: "A quiz app where users select answers from multiple-choice options and view their final score at the end.",
+    description:
+      "A quiz app where users select answers from multiple-choice options and view their final score at the end.",
     category: "Web",
     image: Img4,
     tech: ["HTML", "CSS", "JavaScript"],
@@ -144,11 +148,11 @@ export default function ProjectsPage() {
     <div className="container mx-auto py-12 px-4 max-w-7xl">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-center mb-4 text-gray-900 dark:text-white">
-            My{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-500">
-              Projects
-            </span>
-          </h2>
+          My{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-500">
+            Projects
+          </span>
+        </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           A collection of my work across different technologies and platforms.
         </p>
@@ -185,35 +189,43 @@ export default function ProjectsPage() {
               {filteredProjects.map((project) => (
                 <Card
                   key={project.id}
-                  className="hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden border border-border/50 hover:border-primary/10 group p-0 dark:bg-gray-800/50 flex flex-col h-full"
+                  className="hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden border border-border/50 hover:border-primary/10 group flex flex-col h-full p-0 dark:bg-gray-800/50"
                 >
-                  <div className="relative overflow-hidden flex-grow">
+                  {/* Image - no margin or padding */}
+                  <div className="relative overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-6">
-                    <CardHeader className="p-0 mb-4">
+
+                  {/* Content - only controlled padding */}
+                  <div className="p-5 flex flex-col flex-grow">
+                    <CardHeader className="p-0 mb-3">
                       <CardTitle className="text-xl">{project.title}</CardTitle>
                       <CardDescription className="text-muted-foreground">
                         {project.description}
                       </CardDescription>
                     </CardHeader>
-                    <CardContent className="p-0">
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tech.map((t, index) => (
-                          <Badge
-                            key={index}
-                            variant="outline"
-                            className="font-mono text-xs px-2 py-1"
-                          >
-                            {t}
-                          </Badge>
-                        ))}
+
+                    <CardContent className="p-0 flex flex-col flex-grow justify-between">
+                      <div>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.tech.map((t, index) => (
+                            <Badge
+                              key={index}
+                              variant="outline"
+                              className="font-mono text-xs px-2 py-1"
+                            >
+                              {t}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
-                      <div className="flex gap-2">
+
+                      {/* Buttons aligned at the bottom of content */}
+                      <div className="flex gap-2 mt-auto">
                         <Button
                           size="sm"
                           className="rounded-full"

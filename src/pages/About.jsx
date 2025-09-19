@@ -79,10 +79,10 @@ export function About() {
               </div>
             </div>
 
-            <Button
+             <Button
               asChild
-              variant="outline"
-              className="gap-2 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:border-gray-400 dark:hover:border-gray-600"
+              size="lg"
+              className="gap-2 bg-primary hover:bg-primary/90"
             >
               <a
                 href="https://drive.google.com/uc?export=download&id=1K13KQHCbc7N3YuPcU4Q3HjkQRUmijBWV"
