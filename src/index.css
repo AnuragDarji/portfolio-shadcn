@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap");
 
 @import "tailwindcss";
 @import "tw-animate-css";
-
 
 @custom-variant dark (&:is(.dark *));
 
@@ -125,4 +124,36 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Light mode selection */
+::selection {
+  background: #000; /* black highlight */
+  color: #fff; /* white text */
+}
+
+::-moz-selection {
+  background: #000;
+  color: #fff;
+}
+
+/* Dark mode selection */
+.dark ::selection {
+  background: #fff; /* white highlight */
+  color: #000; /* black text */
+}
+
+.dark ::-moz-selection {
+  background: #fff;
+  color: #000;
+}
+
+:root {
+  --toast-bg: #000;
+  --toast-text: #fff;
+}
+
+.dark {
+  --toast-bg: #fff;
+  --toast-text: #1e1e1e;
 }

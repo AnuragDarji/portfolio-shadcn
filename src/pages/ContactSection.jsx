@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -69,6 +70,12 @@ export function ContactSection() {
         );
 
         console.log("API Response:", response.data);
+
+        if(response.status === 200 || response.status === 201){
+          toast.success("Thank you for your message. I’ll get back to you shortly.");
+        } else{
+          toast.error("Failed to send message. Please try again later.");
+        }
 
         setIsSubmitted(true);
         setFormData({ name: "", email: "", message: "" });
