@@ -90,7 +90,7 @@ export function About() {
                 rel="noopener noreferrer"
               >
                 <IoMdDownload className="text-lg" />
-                Download Resume
+                Resume
               </a>
             </Button>
           </div>
