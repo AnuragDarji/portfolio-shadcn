@@ -85,7 +85,7 @@ export function About() {
               className="gap-2 bg-primary hover:bg-primary/90"
             >
               <a
-                href="https://drive.google.com/file/d/1z6DprqdhNyfYtnBhgc-QljFIZqM5G3o7/view?usp=drive_link"
+                href="https://drive.google.com/file/d/18hDmK5xxzxvaWr0G3KanzGdNtZvs6KhF/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >
