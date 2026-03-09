@@ -10,8 +10,8 @@ const Layout = () => {
   const skillRef = useRef(null);
   const expRef = useRef(null);
   const projRef = useRef(null);
+  const gitRef = useRef(null);
   const contactRef = useRef(null);
-
 
   // Scroll handler
   const handleScrollTo = (ref) => {
@@ -23,14 +23,30 @@ const Layout = () => {
       className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-950"
       style={{ fontFamily: "Playpen Sans" }}
     >
-      <ScrollToTopButton/>
+      <ScrollToTopButton />
       <Header
         onLinkClick={handleScrollTo}
-        refs={{ heroRef, aboutRef, skillRef, expRef, projRef, contactRef }}
+        refs={{
+          heroRef,
+          aboutRef,
+          skillRef,
+          expRef,
+          projRef,
+          gitRef,
+          contactRef,
+        }}
       />
 
       <Outlet
-        context={{ heroRef, aboutRef, skillRef, expRef, projRef, contactRef }}
+        context={{
+          heroRef,
+          aboutRef,
+          skillRef,
+          expRef,
+          projRef,
+          gitRef,
+          contactRef,
+        }}
       />
 
       <Footer />
