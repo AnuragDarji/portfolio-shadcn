@@ -6,9 +6,10 @@ import { ExperienceEducation } from "./ExperienceEducation";
 import { ProjectsSection } from "./ProjectsSection";
 import { ContactSection } from "./ContactSection";
 import { useOutletContext } from "react-router-dom";
+import { GithubSection } from "./GithubSection";
 
 const Home = () => {
-  const { heroRef, aboutRef, skillRef, expRef, projRef, contactRef } =
+  const { heroRef, aboutRef, skillRef, expRef, projRef, contactRef, gitRef } =
     useOutletContext();
   return (
     <div>
@@ -26,6 +27,9 @@ const Home = () => {
       </section>
       <section ref={projRef}>
         <ProjectsSection />
+      </section>
+      <section ref={gitRef}>
+        <GithubSection />
       </section>
       <section ref={contactRef}>
         <ContactSection />
