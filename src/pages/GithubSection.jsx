@@ -330,7 +330,7 @@ export function GithubSection() {
         {/* Profile + Stats row */}
         <div className="flex flex-col lg:flex-row gap-6 mb-8">
           {/* Profile card */}
-          <Card className="bg-white/90 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-none flex-shrink-0 w-full lg:w-72">
+          <Card className="bg-white/90 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-none flex-shrink-0 w-full lg:w-100">
             <CardContent className="px-4 flex flex-col items-center text-center gap-4">
               {loading ? (
                 <>
@@ -345,12 +345,12 @@ export function GithubSection() {
                   <img
                     src={profile?.avatar_url}
                     alt={profile?.name}
-                    className="w-20 h-20 rounded-full border-4 border-purple-500/30 shadow-lg"
+                    className="w-15 h-15 rounded-full border-4 border-purple-500/30 shadow-lg"
                   />
                   <div>
-                    <p className="text-lg font-bold text-gray-900 dark:text-white">
+                    {/* <p className="text-lg font-bold text-gray-900 dark:text-white">
                       {profile?.name}
-                    </p>
+                    </p> */}
                     <p className="text-sm text-purple-500 dark:text-purple-400">
                       @{profile?.login}
                     </p>
