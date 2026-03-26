@@ -14,6 +14,7 @@ import {
 import { motion } from "framer-motion";
 import axios from "axios";
 import toast from "react-hot-toast";
+import API_ENDPOINTS from "@/Constant/api";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -60,20 +61,22 @@ export function ContactSection() {
         };
 
         const response = await axios.post(
-          "https://contact-form-gilt-three.vercel.app/api/contact",
+          API_ENDPOINTS.CONTECT_FORM, // use constant from api.js
           data,
           {
             headers: {
               "Content-Type": "application/json",
             },
-          }
+          },
         );
 
         console.log("API Response:", response.data);
 
-        if(response.status === 200 || response.status === 201){
-          toast.success("Thank you for your message. I’ll get back to you shortly.");
-        } else{
+        if (response.status === 200 || response.status === 201) {
+          toast.success(
+            "Thank you for your message. I’ll get back to you shortly.",
+          );
+        } else {
           toast.error("Failed to send message. Please try again later.");
         }
 

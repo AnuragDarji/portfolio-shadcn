@@ -6,6 +6,7 @@ import Layout from '../Layout'
 import ROUTES from '../Constant/routes'
 import Home  from '../pages/Home'
 import ProjectsPage  from '../pages/ProjectsPage'
+import ProjectManager from '../pages/ProjectManager'
 
 
 const AppRoutes = () => {
@@ -14,6 +15,7 @@ const AppRoutes = () => {
         <Route path='/' element={<Layout/>}>
             <Route index element={<Home/>}/>
             <Route path={ROUTES.PROJECTS} element={<ProjectsPage/>}/>
+            <Route path={ROUTES.ADD_PROJECTS} element={<ProjectManager/>}/>
         </Route>
     </Routes>
   )

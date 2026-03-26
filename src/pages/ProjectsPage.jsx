@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   Card,
@@ -10,139 +10,36 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, Link as LinkIcon } from "lucide-react";
-import Img1 from "../assets/Project/work-1.jpg";
-import Img2 from "../assets/Project/work-2.jpg";
-import Img3 from "../assets/Project/work-3.jpg";
-import Img4 from "../assets/Project/work-4.jpg";
-import Img5 from "../assets/Project/work-5.jpg";
-import Img6 from "../assets/Project/work-6.jpg";
-import Img7 from "../assets/Project/work-7.jpg";
-import Img8 from "../assets/Project/work-8.jpg";
-import Img9 from "../assets/Project/work-9.jpg";
-import Img10 from "../assets/Project/shortly.png";
+import API_ENDPOINTS from "@/Constant/api";
 
-// Sample project data - some without links
-const projectsData = [
-  {
-    id: 1,
-    title: "ApplyWize",
-    description:
-      "APPLYWIZE simplifies higher education admissions for students aspiring to study abroad.",
-    category: "Web",
-    image: Img1,
-    tech: ["React", "Antd", "Sass", "TypeScript", "Django"],
-    githubLink: "",
-    liveLink: "https://applywize.com/",
-  },
-  {
-    id: 7,
-    title: "SkyEduco",
-    description:
-      "Responsive education portal guiding students abroad with personalized university matching, streamlined applications, and real-time tracking of progress.",
-    category: "Web",
-    image: Img9,
-    tech: ["React", "Antd", "Sass", "TypeScript", "Django"],
-    githubLink: "",
-    liveLink: "https://skyeduco.com/",
-  },
-  {
-    id: 8,
-    title: "Xamera",
-    description:
-      "XAMERA provides science-backed psychometric career counseling coupled with expert test preparation to support learners.",
-    category: "Web",
-    image: Img7,
-    tech: ["React", "Antd", "Sass", "Django"],
-    githubLink: "",
-    liveLink: "https://xamera.org/",
-  },
-  {
-    id: 11,
-    title: "Short.ly",
-    description:
-      "Short.ly helps you transform long, messy URLs into clean, trackable, and shareable short links in seconds.",
-    category: "Web",
-    image: Img10,
-    tech: ["React", "Shadcn", "tailwind", "Node js", "Express", "MongoDB"],
-    githubLink: "https://github.com/AnuragDarji/short-url-frontend",
-    liveLink: "https://shorturl-fawn.vercel.app/",
-  },
-  {
-    id: 9,
-    title: "My Store",
-    description:
-      "My Store is a React-based e-commerce web application featuring a collection of sample products.",
-    category: "Web",
-    image: Img8,
-    tech: ["React", "Sass", "Redux"],
-    githubLink: "https://github.com/AnuragDarji/MyStore",
-    liveLink: "https://my-store-nine-ecru.vercel.app/",
-  },
-  {
-    id: 2,
-    title: "Mobile HR App",
-    description: "React Native app for employee attendance and HR management.",
-    category: "Mobile",
-    image: Img6,
-    tech: ["React Native", "Expo", "Django"],
-    githubLink: null, // No GitHub link
-    liveLink: null,
-  },
-  {
-    id: 3,
-    title: "Portfolio Website",
-    description:
-      "Personal portfolio with animations,smooth scrolling and responsive.",
-    category: "Web",
-    image: Img5,
-    tech: ["HTML", "CSS", "JavaScript"],
-    githubLink: "https://github.com/AnuragDarji/Portfolio",
-    liveLink: "https://anuragdarji.github.io/Portfolio/", // No live link
-  },
-  {
-    id: 4,
-    title: "Hamprigo Industries",
-    description:
-      "The company specializes in fabric and textile manufacturing, particularly canvas, sheets, and sheeting materials.",
-    category: "Web",
-    image: Img2,
-    tech: ["React JS", "Antd"],
-    githubLink: null, // No GitHub link
-    liveLink: "https://hamprigoindustries.com/", // No live link
-  },
-  {
-    id: 5,
-    title: "Weather App",
-    description:
-      "A React JS weather app where you can search for any city to get real-time weather updates.",
-    category: "Web",
-    image: Img3,
-    tech: ["React JS"],
-    githubLink: "https://github.com/AnuragDarji/weather-app", // No GitHub link
-    liveLink: "https://anuragdarji.github.io/weather-app/", // No live link
-  },
-  {
-    id: 6,
-    title: "Quiz App",
-    description:
-      "A quiz app where users select answers from multiple-choice options and view their final score at the end.",
-    category: "Web",
-    image: Img4,
-    tech: ["HTML", "CSS", "JavaScript"],
-    githubLink: "https://github.com/AnuragDarji/Quiz-App", // No GitHub link
-    liveLink: "https://anuragdarji.github.io/Quiz-App/", // No live link
-  },
-];
+const API = API_ENDPOINTS.PROJECTS;
 
 const categories = ["All", "Web", "Mobile"];
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [projectsData, setProjectsData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projectsData
-      : projectsData.filter((project) => project.category === selectedCategory);
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const category = selectedCategory === "All" ? "" : selectedCategory.toLowerCase();
+        const url = category ? `${API}?category=${category}` : API;
+        const res = await fetch(url);
+        const data = await res.json();
+        setProjectsData(data.projects || []);
+      } catch (err) {
+        console.error("Failed to fetch projects:", err);
+        setProjectsData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, [selectedCategory]);
 
   return (
     <div className="container mx-auto py-12 px-4 max-w-7xl">
@@ -178,7 +75,11 @@ export default function ProjectsPage() {
 
         {/* Project Cards */}
         <TabsContent value={selectedCategory} className="w-full">
-          {filteredProjects.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-xl text-muted-foreground">Loading projects...</p>
+            </div>
+          ) : projectsData.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-xl text-muted-foreground">
                 No projects found in this category.
@@ -186,12 +87,12 @@ export default function ProjectsPage() {
             </div>
           ) : (
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredProjects.map((project) => (
+              {projectsData.map((project) => (
                 <Card
-                  key={project.id}
+                  key={project._id}
                   className="hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden border border-border/50 hover:border-primary/10 group flex flex-col h-full p-0 dark:bg-gray-800/50"
                 >
-                  {/* Image - no margin or padding */}
+                  {/* Image */}
                   <div className="relative overflow-hidden">
                     <img
                       src={project.image}
@@ -200,7 +101,7 @@ export default function ProjectsPage() {
                     />
                   </div>
 
-                  {/* Content - only controlled padding */}
+                  {/* Content */}
                   <div className="p-5 flex flex-col flex-grow">
                     <CardHeader className="p-0 mb-3">
                       <CardTitle className="text-xl">{project.title}</CardTitle>
@@ -212,7 +113,7 @@ export default function ProjectsPage() {
                     <CardContent className="p-0 flex flex-col flex-grow justify-between">
                       <div>
                         <div className="flex flex-wrap gap-2 mb-4">
-                          {project.tech.map((t, index) => (
+                          {project.skills.map((t, index) => (
                             <Badge
                               key={index}
                               variant="outline"
@@ -224,17 +125,17 @@ export default function ProjectsPage() {
                         </div>
                       </div>
 
-                      {/* Buttons aligned at the bottom of content */}
+                      {/* Buttons */}
                       <div className="flex gap-2 mt-auto">
                         <Button
                           size="sm"
                           className="rounded-full"
-                          disabled={!project.githubLink}
-                          asChild={!!project.githubLink}
+                          disabled={!project.github}
+                          asChild={!!project.github}
                         >
-                          {project.githubLink ? (
+                          {project.github ? (
                             <a
-                              href={project.githubLink}
+                              href={project.github}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="flex items-center"
@@ -251,12 +152,12 @@ export default function ProjectsPage() {
                           size="sm"
                           variant="outline"
                           className="rounded-full"
-                          disabled={!project.liveLink}
-                          asChild={!!project.liveLink}
+                          disabled={!project.live}
+                          asChild={!!project.live}
                         >
-                          {project.liveLink ? (
+                          {project.live ? (
                             <a
-                              href={project.liveLink}
+                              href={project.live}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="flex items-center"
